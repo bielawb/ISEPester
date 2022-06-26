@@ -16,5 +16,4 @@ function Get-psISE {
     param ()
 
     $psISE
-
 }

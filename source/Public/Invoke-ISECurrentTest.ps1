@@ -62,6 +62,4 @@ function Invoke-ISECurrentTest {
     } else {
         Write-Warning -Message 'Command can work only with test files saved on disk - save it first!'
     }
-
-
 }
