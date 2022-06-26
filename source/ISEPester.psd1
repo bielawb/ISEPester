@@ -24,7 +24,7 @@ GUID = 'b0d17dd3-ac9c-47a4-80cb-ce9964d08ed3'
 Author = 'Bartek Bielawski'
 
 # Company or vendor of this module
-CompanyName = 'Unknown'
+CompanyName = 'Optiver'
 
 # Copyright statement for this module
 Copyright = '(c) 2022 Bartek Bielawski. All rights reserved.'
@@ -51,7 +51,12 @@ Description = 'Module with ISE tools for Pester v5+'
 # ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-# RequiredModules = @()
+RequiredModules = @(
+    @{
+        ModuleName = 'Pester'
+        RequiredVersion = '5.0'
+    }
+)
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()
@@ -69,16 +74,16 @@ Description = 'Module with ISE tools for Pester v5+'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = '*'
+FunctionsToExport = 'Invoke-ISECurrentTest'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = '*'
+# CmdletsToExport = '*'
 
 # Variables to export from this module
-VariablesToExport = '*'
+# VariablesToExport = '*'
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-AliasesToExport = '*'
+# AliasesToExport = '*'
 
 # DSC resources to export from this module
 # DscResourcesToExport = @()
@@ -96,13 +101,13 @@ PrivateData = @{
 
         Prerelease = ''
         # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+        Tags = @('ISE', 'Pester')
 
         # A URL to the license for this module.
         # LicenseUri = ''
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/bielawb/ISEPester'
 
         # A URL to an icon representing this module.
         # IconUri = ''
