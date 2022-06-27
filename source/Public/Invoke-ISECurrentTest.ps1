@@ -23,6 +23,14 @@ function Invoke-ISECurrentTest {
         Write-Warning -Message 'Command designed to use in PowerShell ISE'
     }
 
+    if (-not (Get-Module -Name Pester)) {
+        try {
+            Import-Module -Name Pester -MinimumVersion 5.0 -ErrorAction Stop
+        } catch {
+            Write-Warning -Message "Failed to import Pester module - $_"
+        }
+    }
+
     if (
         ($file = $ise.CurrentFile) -and
         (Test-Path -LiteralPath $file.FullPath) -and
