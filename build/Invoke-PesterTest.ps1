@@ -17,9 +17,6 @@ param (
     # Top folder of the repository where build should be run. Defaults to top level of the repo where script is located.
     [String]$Path = $(git -C $PSScriptRoot rev-parse --show-toplevel),
 
-    # Name of the output folder
-    [String]$OutputFolder = 'output',
-
     # Name of the folder with test scripts
     [String]$TestsFolder = 'tests',
 
@@ -48,7 +45,6 @@ $config.Output.Verbosity = $Verbosity
 $config.Output.CIFormat
 
 Write-Verbose -Message "Root path: $Path"
-$outputPath = Join-Path -Path $Path -ChildPath $OutputFolder
 $testPath = Join-Path -Path $Path -ChildPath $TestsFolder
 
 $config.Run.Path = @(

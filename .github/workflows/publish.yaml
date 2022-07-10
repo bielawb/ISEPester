@@ -1,0 +1,22 @@
+name: PSGallery
+on:
+  release:
+    types: [published]
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Clean output folder
+        shell: powershell
+        run: |
+          .\build\Clean-OutputFolder.ps1
+      - name: Build module
+        shell: powershell
+        run: |
+          .\build\Invoke-ModuleBuild.ps1
+      - name: Publishing module
+        shell: powershell
+        run: |
+            Publish-Module -Path .\output\ISEPester -NuGetApiKey ${{ secrets.PSGallery }}
