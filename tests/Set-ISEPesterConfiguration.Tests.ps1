@@ -38,6 +38,6 @@ Describe "Testing Set-ISEPesterConfiguration" {
         Set-ISEPesterConfiguration -InvokeScope ChildScope
         & $module {
             $script:invokeScope
-        } | Should -BeExactly ChildScopes
+        } | Should -BeExactly ChildScope
     }
 }
