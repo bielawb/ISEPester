@@ -30,12 +30,22 @@ param (
         'Detailed',
         'Diagnostic'
     )]
-    [String]$Verbosity = 'Detailed'
+    [String]$Verbosity = 'Detailed',
+
+    # CI format for errors
+    [ValidateSet(
+        'None',
+        'Auto',
+        'AzureDevops',
+        'GithubActions'
+    )]
+    [String]$CIFormat = 'GithubActions'
 )
 
 Import-Module -Name Pester -MinimumVersion 5.0
 $config = [PesterConfiguration]::Default
 $config.Output.Verbosity = $Verbosity
+$config.Output.CIFormat
 
 Write-Verbose -Message "Root path: $Path"
 $outputPath = Join-Path -Path $Path -ChildPath $OutputFolder
