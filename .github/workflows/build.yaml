@@ -1,0 +1,17 @@
+name: Test ISEPester on Windows
+on: push
+jobs:
+  pester-test:
+    name: Pester test
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Build module
+        shell: powershell
+        run: |
+          .\build\Invoke-ModuleBuild.ps1
+      - name: Test module
+        shell: powershell
+        run: |
+          .\build\Invoke-PesterTest.ps1

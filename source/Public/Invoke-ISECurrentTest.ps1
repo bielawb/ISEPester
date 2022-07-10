@@ -23,6 +23,14 @@ function Invoke-ISECurrentTest {
         Write-Warning -Message 'Command designed to use in PowerShell ISE'
     }
 
+    if (-not (Get-Module -Name Pester)) {
+        try {
+            Import-Module -Name Pester -MinimumVersion 5.0 -ErrorAction Stop
+        } catch {
+            Write-Warning -Message "Failed to import Pester module - $_"
+        }
+    }
+
     if (
         ($file = $ise.CurrentFile) -and
         (Test-Path -LiteralPath $file.FullPath) -and
@@ -33,9 +41,7 @@ function Invoke-ISECurrentTest {
             Write-Warning -Message "File $($file.FullPath) is not saved - working on current copy on disk!"
         }
         $config = [PesterConfiguration]@{
-            Output = @{
-                Verbosity = 'Detailed'
-            }
+            Output = $script:outputConfiguration
             Run = @{
                 Path = $file.FullPath
             }
@@ -58,7 +64,13 @@ function Invoke-ISECurrentTest {
             )
             $config.Filter.Line = '{0}:{1}' -f $file.FullPath, $myItBlock[0].Extent.StartLineNumber
         }
-        Invoke-Pester -Configuration $config
+        if ($script:invokeScope -eq 'ParentScope') {
+            Invoke-Pester -Configuration $config
+        } else {
+            & {
+                Invoke-Pester -Configuration $config
+            }
+        }
     } else {
         Write-Warning -Message 'Command can work only with test files saved on disk - save it first!'
     }
