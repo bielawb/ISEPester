@@ -8,10 +8,6 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - name: Clean output folder
-        shell: powershell
-        run: |
-          .\build\Clean-OutputFolder.ps1
       - name: Build module
         shell: powershell
         run: |
