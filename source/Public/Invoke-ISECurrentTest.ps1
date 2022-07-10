@@ -41,9 +41,7 @@ function Invoke-ISECurrentTest {
             Write-Warning -Message "File $($file.FullPath) is not saved - working on current copy on disk!"
         }
         $config = [PesterConfiguration]@{
-            Output = @{
-                Verbosity = 'Detailed'
-            }
+            Output = $script:outputConfiguration
             Run = @{
                 Path = $file.FullPath
             }
@@ -66,7 +64,13 @@ function Invoke-ISECurrentTest {
             )
             $config.Filter.Line = '{0}:{1}' -f $file.FullPath, $myItBlock[0].Extent.StartLineNumber
         }
-        Invoke-Pester -Configuration $config
+        if ($script:invokeScope -eq 'ParentScope') {
+            Invoke-Pester -Configuration $config
+        } else {
+            & {
+                Invoke-Pester -Configuration $config
+            }
+        }
     } else {
         Write-Warning -Message 'Command can work only with test files saved on disk - save it first!'
     }
