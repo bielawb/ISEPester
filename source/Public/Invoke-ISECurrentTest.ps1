@@ -41,11 +41,11 @@ function Invoke-ISECurrentTest {
             Write-Warning -Message "File $($file.FullPath) is not saved - working on current copy on disk!"
         }
         $config = [PesterConfiguration]@{
-            Output = $script:outputConfiguration
             Run = @{
                 Path = $file.FullPath
             }
         }
+        $config.Output = $script:outputConfiguration
         if ($line -match '\s*(Describe|Context|It)') {
             $config.Filter.Line = '{0}:{1}' -f $file.FullPath, $lineNumber
         } else {
