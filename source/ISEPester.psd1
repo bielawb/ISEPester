@@ -1,6 +1,6 @@
 @{
     RootModule = 'ISEPester.psm1'
-    ModuleVersion = '1.0.2'
+    ModuleVersion = '1.0.3'
     GUID = 'b0d17dd3-ac9c-47a4-80cb-ce9964d08ed3'
     Author = 'Bartek Bielawski'
     CompanyName = 'Optiver'
