@@ -6,12 +6,6 @@
     CompanyName = 'Optiver'
     Copyright = '(c) 2022 Bartek Bielawski. All rights reserved.'
     Description = 'Module with ISE tools for Pester v5+'
-    RequiredModules = @(
-        @{
-            ModuleName = 'Pester'
-            ModuleVersion = '5.0'
-        }
-    )
     FunctionsToExport = @()
     PrivateData = @{
         PSData = @{
