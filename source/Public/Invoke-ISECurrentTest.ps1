@@ -62,7 +62,12 @@ function Invoke-ISECurrentTest {
                 },
                 $true
             )
-            $config.Filter.Line = '{0}:{1}' -f $file.FullPath, $myItBlock[0].Extent.StartLineNumber
+            if ($myItBlock) {
+                $config.Filter.Line = '{0}:{1}' -f $file.FullPath, $myItBlock[0].Extent.StartLineNumber
+            } else {
+                Write-Warning -Message "Line '$line' at $lineNumber is not inside It block - perhaps $($file.FullPath) is not a test file?"
+                return
+            }
         }
         if ($script:invokeScope -eq 'ParentScope') {
             Invoke-Pester -Configuration $config
