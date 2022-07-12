@@ -7,6 +7,3 @@ try {
 } catch {
     Write-Warning -Message "Failed to add shortcut - $_"
 }
-
-$script:outputConfiguration = [Pester.OutputConfiguration]::Default
-$script:invokeScope = 'ParentScope'
