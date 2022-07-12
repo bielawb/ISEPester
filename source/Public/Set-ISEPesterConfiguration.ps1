@@ -47,12 +47,14 @@
         )]
         [String]$CIFormat,
 
-        # The way of running tests
-        [ValidateSet(
-            'ParentScope',
-            'ChildScope'
-        )]
-        [String]$InvokeScope
+        # The scope where scripts should run
+        [Scope]$InvokeScope,
+
+        # Behavior for files that were not saved
+        [NotSaved]$ActionNotSaved,
+
+        # Behavior for filest that are untitled/ not saved to disk yet
+        [Untitled]$ActionUntitled
     )
 
     foreach (
@@ -67,7 +69,15 @@
         }
     }
 
-    if ($PSBoundParameters.ContainsKey('InvokeScope')) {
-        $script:invokeScope = $InvokeScope
+    foreach (
+        $key in @(
+            'InvokeScope'
+            'ActionNotSaved'
+            'ActionUntitled'
+        )
+    ) {
+        if ($PSBoundParameters.ContainsKey($key)) {
+            $script:isePesterConfiguration.$key = $PSBoundParameters.$key
+        }
     }
 }
