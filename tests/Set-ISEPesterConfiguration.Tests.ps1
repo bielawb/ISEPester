@@ -9,7 +9,7 @@ Describe "Testing Set-ISEPesterConfiguration" {
                 StackTraceVerbosity = 'Filtered'
                 CIFormat = 'Auto'
             }
-            $script:invokeScope = 'ParentScope'
+            $script:isePesterConfiguration.InvokeScope = 'ParentScope'
         }
     }
 
@@ -37,7 +37,7 @@ Describe "Testing Set-ISEPesterConfiguration" {
     It 'Changes invoke scope as expected' {
         Set-ISEPesterConfiguration -InvokeScope ChildScope
         & $module {
-            $script:invokeScope
+            $script:isePesterConfiguration.InvokeScope
         } | Should -BeExactly ChildScope
     }
 }
