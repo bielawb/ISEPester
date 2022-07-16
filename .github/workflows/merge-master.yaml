@@ -1,12 +1,13 @@
 name: PSGallery
 on:
-#  release:
-#    types: [published]
   pull_request:
     branches:
-      - "master"
+      - master
+    types: [closed]
+
 jobs:
   publish:
+    if: github.event.pull_request.merged == true
     runs-on: windows-latest
     steps:
       - name: Check out repository code
