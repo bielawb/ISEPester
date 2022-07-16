@@ -3,7 +3,7 @@ Describe "Testing Invoke-ISECurrentTest" {
         $module = Import-Module -Name $PSScriptRoot\..\output\ISEPester\ISEPester.psd1 -PassThru -Force
         Mock -CommandName Import-Module
     }
-    
+
     Context 'Testing normal actions' {
         BeforeAll {
             Set-Content -Path testdrive:\test.tests.ps1 -Value @'

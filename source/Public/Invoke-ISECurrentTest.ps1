@@ -12,7 +12,7 @@ function Invoke-ISECurrentTest {
 
         .Example
         Invoke-ISECurrentTest
-        
+
         Runs test on the line where cursor in the current file is located.
     #>
     [CmdletBinding()]

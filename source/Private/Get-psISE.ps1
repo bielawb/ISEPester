@@ -9,7 +9,7 @@ function Get-psISE {
 
         .Example
         $test = Get-psISE
-        
+
         Saves value of psISE object into variable test.
     #>
     [CmdletBinding()]

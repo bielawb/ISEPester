@@ -5,8 +5,9 @@
     .Description
     Script that runs Pester tests and writes results in proper format.
     Configuration used:
-    - Run/ Path -> all files in tests/*.Tests.ps1
-    - 
+    - Run/ Path -> By default all files in tests/*.Tests.ps1
+    - Verbosity -> Detailed by default (controlled by parameter)
+    - CIFormat -> GithubActions by default (controlled by parameter)
 
     .Example
     Invoke-PesterTest
@@ -42,6 +43,7 @@ param (
 Import-Module -Name Pester -MinimumVersion 5.0
 $config = [PesterConfiguration]::Default
 $config.Output.Verbosity = $Verbosity
+$config.Output.CIFormat = $CIFormat
 
 Write-Verbose -Message "Root path: $Path"
 $testPath = Join-Path -Path $Path -ChildPath $TestsFolder
