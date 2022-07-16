@@ -71,5 +71,5 @@ Describe 'Testing global configuration' {
         $result.ForEach{
             '{0}({1}) => {2}:{3} ({4})' -f $_.RuleName, $_.Severity, $_.ScriptName, $_.Line, $_.Message
         } | Should -BeNullOrEmpty
-    } -TestCases $moduleFile 
+    } -TestCases $moduleFile
 }
