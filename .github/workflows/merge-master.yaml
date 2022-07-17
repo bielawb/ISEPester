@@ -1,4 +1,4 @@
-name: PSGallery
+name: Update PSGallery on merge to master
 on:
   pull_request:
     branches:

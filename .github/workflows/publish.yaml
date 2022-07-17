@@ -1,7 +1,7 @@
-name: PSGallery
+name: Update PSGallery on GitHub publish
 on:
-#  release:
-#    types: [published]
+  release:
+    types: [published]
   pull_request:
     branches:
       - "master"
