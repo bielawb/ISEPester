@@ -15,3 +15,5 @@ jobs:
         shell: powershell
         run: |
           .\build\Invoke-PesterTest.ps1
+      - name: Publish code coverage
+        uses: codecov/codecov-action@v3

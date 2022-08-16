@@ -44,6 +44,7 @@ Import-Module -Name Pester -MinimumVersion 5.0
 $config = [PesterConfiguration]::Default
 $config.Output.Verbosity = $Verbosity
 $config.Output.CIFormat = $CIFormat
+$config.CodeCoverage.Enabled = $true
 
 Write-Verbose -Message "Root path: $Path"
 $testPath = Join-Path -Path $Path -ChildPath $TestsFolder
