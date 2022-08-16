@@ -21,6 +21,9 @@ param (
     # Name of the folder with test scripts
     [String]$TestsFolder = 'tests',
 
+    # Name of the output folder
+    [String]$OutputFolder = 'output',
+
     # Verbosity of the output of Pester tests. Default to Detailed view.
     [ValidateSet(
         'None',
@@ -48,10 +51,17 @@ $config.CodeCoverage.Enabled = $true
 
 Write-Verbose -Message "Root path: $Path"
 $testPath = Join-Path -Path $Path -ChildPath $TestsFolder
+$outputPath = Join-Path -Path $Path -ChildPath $OutputFolder
 
 $config.Run.Path = @(
     foreach ($testFile in Get-ChildItem -Path $testPath -Filter *.Tests.ps1) {
         $testFile.FullName
+    }
+)
+
+$config.CodeCoverage.Path = @(
+    foreach ($outputFile in Get-ChildItem -Recurse -Path $outputPath -Filter *.ps*) {
+        $outputFile.FullName
     }
 )
 
